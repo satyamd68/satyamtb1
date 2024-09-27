@@ -1,5 +1,5 @@
 library(cubature)
-n=200;rho=0.7;b=10
+n=50;rho=0.7;b=10
 rhoSELF=c()
 riskSELF=c()
 rhoPLF=c()
