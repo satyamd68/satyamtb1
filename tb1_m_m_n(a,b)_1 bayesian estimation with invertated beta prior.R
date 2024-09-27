@@ -1,0 +1,89 @@
+library(cubature)
+n=50;rho=0.7;b=10;alpha=3;beta=4
+numerator1=c()
+rhoSELF=c()
+riskSELF=c()
+rhoPLF=c()
+riskPLF=c()
+for(t in 1:1000){
+for(i in 1:n){
+  x[i]=rgeom(1,1/(1+(b*rho)))
+}
+a<-1:n
+y=sum(x[a])
+y
+f<-function(x){
+  x^(alpha+y)*(1-x)^(n+beta-2)
+}
+e1=adaptIntegrate(f,0,b/(b+1))
+numerator[t]=e1$integral
+g<-function(x){
+  x^(alpha+y-1)*(1-x)^(n+beta-1)
+}
+e2=adaptIntegrate(g,0,b/(b+1) )
+denomenator[t]=e2$integral
+h<-function(x){
+  x^(alpha+y+1)*(1-x)^(n+beta-3)
+}
+e3=adaptIntegrate(h,0,b/(b+1))
+numerator1[t]=e3$integral
+rhoSELF[t]=numerator[t]/(b*denomenator[t])
+print(rhoSELF[t])
+riskSELF[t]=(numerator1[t]/(b^(2)*denomenator[t]))-(rhoSELF[t])^(2)
+print(riskSELF[t])
+rhoPLF[t]=(numerator1[t]/(b^(2)*denomenator[t]))^(1/2)
+print(rhoPLF[t])
+riskPLF[t]=2*(rhoPLF[t]-rhoSELF[t])
+print(riskPLF[t])
+}
+b<-1:1000
+mean(rhoSELF[b])
+mean(riskSELF[b])
+mean(rhoPLF[b])
+mean(riskPLF[b])
+##############################################################
+
+
+
+
+
+
+
+
+
+
+library(cubature)
+n=200;rho=0.99;b=8;alpha=2;beta=3
+for(i in 1:n){
+  x[i]=rgeom(1,1/(1+(b*rho)))
+}
+a<-1:n
+y=sum(x[a])
+y
+
+f<-function(x){
+  x^(alpha+y)*(1-x)^(n+beta-2)
+}
+e1=adaptIntegrate(f,0,b/(b+1))
+numerator=e1$integral
+numerator
+g<-function(x){
+  x^(alpha+y-1)*(1-x)^(n+beta-1)
+}
+e2=adaptIntegrate(g,0,b/(b+1) )
+denomenator=e2$integral
+denomenator
+rho=numerator/(b*denomenator)
+rho
+h<-function(x){
+  x^(alpha+y+1)*(1-x)^(n+beta-3)
+}
+e3=adaptIntegrate(h,0,b/(b+1))
+numerator1=e3$integral
+numerator1
+
+
+
+
+
+
