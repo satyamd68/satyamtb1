@@ -1,4 +1,4 @@
-n=200;rho=0.7;b=10
+n=50;rho=0.7;b=10
 x<-c()
 Mlerho<-c()
 for(t in 1:1000){
