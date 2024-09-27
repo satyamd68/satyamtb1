@@ -41,47 +41,6 @@ mean(rhoSELF[b])
 mean(riskSELF[b])
 mean(rhoPLF[b])
 mean(riskPLF[b])
-##############################################################
-
-
-
-
-
-
-
-
-
-
-library(cubature)
-n=200;rho=0.99;b=8;alpha=2;beta=3
-for(i in 1:n){
-  x[i]=rgeom(1,1/(1+(b*rho)))
-}
-a<-1:n
-y=sum(x[a])
-y
-
-f<-function(x){
-  x^(alpha+y)*(1-x)^(n+beta-2)
-}
-e1=adaptIntegrate(f,0,b/(b+1))
-numerator=e1$integral
-numerator
-g<-function(x){
-  x^(alpha+y-1)*(1-x)^(n+beta-1)
-}
-e2=adaptIntegrate(g,0,b/(b+1) )
-denomenator=e2$integral
-denomenator
-rho=numerator/(b*denomenator)
-rho
-h<-function(x){
-  x^(alpha+y+1)*(1-x)^(n+beta-3)
-}
-e3=adaptIntegrate(h,0,b/(b+1))
-numerator1=e3$integral
-numerator1
-
 
 
 
